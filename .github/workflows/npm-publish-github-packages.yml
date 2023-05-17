@@ -32,7 +32,25 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
+      - name: Install Dependencies
+        run: |
+            cd freecodecamp
+            npm ci
+      - name: Build the app
+        run: |
+            cd freecodecamp
+            npm run build
+      
+      - name: run component test
+        run: |
+            cd freecodecamp
+            npm run test
+            
+      - name: start the app
+        run: |
+            cd freecodecamp
+            npm start &
+            npx wait -on --timeout 60000
+     
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
