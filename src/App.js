@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [age, setAge] = useState(20);
+  const handleClick = () => {
+    console.log("add");
+    setAge((previous)=> previous +1);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div data-testid="count" className="App">
+        age: {age}
+      </div>
+      <button className="btn" type="submit" onClick={handleClick}>
+        increment
+      </button>
     </div>
   );
 }
